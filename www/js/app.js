@@ -44,6 +44,13 @@ var app  = new Framework7({
   routes: routes,
 });
 
+app.on('pageInit', function (page) {
+  if (page.name == 'produto') {
+      document.querySelector("#salvar").addEventListener('click', adicionar);
+  }
+});
+
+
 // Init/Create views
 var homeView = app.views.create('#view-home', {
   url: '/'
@@ -67,5 +74,6 @@ $$('#my-login-screen .login-button').on('click', function () {
   // Alert username and password
   app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
 });
+
 
 
