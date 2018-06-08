@@ -13,10 +13,10 @@
       <div class="item-media">
         <i class="icon demo-list-icon"></i>
       </div>
-      <div class="item-inner">
+      <div class="item-inner" >
         <div class="item-title item-floating-label">Nome do Produto</div>
         <div class="item-input-wrap">
-          <input type="text" placeholder="seu produto">
+          <input type="text" placeholder="seu produto" id="n_produto" name="produto">
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -30,7 +30,7 @@
 <div class="item-inner">
         <div class="item-title item-floating-label">Quantidade</div>
         <div class="item-input-wrap">
-          <input type="number" placeholder="quntidade">
+          <input type="number" placeholder="quntidade" id="q_produto" name="quantidade">
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <div class="item-inner">
         <div class="item-title item-floating-label">Preço</div>
         <div class="item-input-wrap">
-          <input type="number" placeholder="preço">
+          <input type="number" placeholder="preço" id="p_produto" name="preco">
           <span class="input-clear-button"></span>
         </div>
       </div>
@@ -58,11 +58,24 @@
       </li>
     </ul>
   </div>   
+    <script>
+        document.querySelector("#salvar").addEventListener('click', function() {
+        console.log('rodando')
+        var v_preco = document.querySelector('#p_produto').value;
+        var v_produto = document.querySelector('#n_produto').value;
+        var v_quantidade = document.querySelector('#q_produto').value;
+            db.transaction(function (tx) {            
+                tx.executeSql('INSERT INTO LISTA (id, produto, quantidade, preco) VALUES (1, v_produto, v_quantidade, v_preco)');            
+                msg = '<p>Mensagem</p>';
+                document.querySelector('#s_listas').innerHTML =  msg;
+            });
+        });        
+    </script>
           
           
  <div class="block">
   <p class="row">
-   <button class="col button button-small button-fill">Salvar</button>
+   <button class="col button button-small button-fill" name="salvar" id="salvar">Salvar</button>
   </p>
 </div>
 </div>
